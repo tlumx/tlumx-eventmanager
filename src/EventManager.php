@@ -46,10 +46,6 @@ class EventManager implements EventManagerInterface
             return false;
         }
 
-        if (!is_callable($callback)) {
-            return false;
-        }
-
         $flag = false;
         foreach ($this->listeners[$event] as $priority => $listeners) {
             foreach ($listeners as $key => $val) {
