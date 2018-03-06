@@ -42,6 +42,7 @@ class EventManagerTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($eventManager->attach('event2', $listener5));
 
         $this->assertFalse($eventManager->attach('event3', 'no_callable'));
+        $this->assertTrue($eventManager->attach('event2', $listener1, 1));
 
         $ref = new \ReflectionClass('Tlumx\EventManager\EventManager');
         $reflectionProperty = $ref->getProperty('listeners');
@@ -60,7 +61,7 @@ class EventManagerTest extends \PHPUnit\Framework\TestCase
             ],
             'event2' => [
                 0 => [$listener5],
-                1 => [$listener3]
+                1 => [$listener3, $listener1]
             ]
         ], $listeners);
 
@@ -68,6 +69,9 @@ class EventManagerTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($eventManager->detach('event3', function () {
         }));
         $this->assertTrue($eventManager->detach('event1', $listener1));
+
+        $this->assertTrue($eventManager->attach('event3', $listener1, 1));
+        $this->assertTrue($eventManager->detach('event3', $listener1));
 
         $listeners = $reflectionProperty->getValue($eventManager);
         $this->assertEquals([
@@ -80,7 +84,7 @@ class EventManagerTest extends \PHPUnit\Framework\TestCase
             ],
             'event2' => [
                 0 => [$listener5],
-                1 => [$listener3]
+                1 => [$listener3, $listener1]
             ]
         ], $listeners);
         $this->assertTrue($eventManager->detach('event1', [
@@ -94,7 +98,7 @@ class EventManagerTest extends \PHPUnit\Framework\TestCase
             ],
             'event2' => [
                 0 => [$listener5],
-                1 => [$listener3]
+                1 => [$listener3, $listener1]
             ]
         ], $listeners);
 
@@ -103,7 +107,7 @@ class EventManagerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals([
             'event2' => [
                 0 => [$listener5],
-                1 => [$listener3]
+                1 => [$listener3, $listener1]
             ]
         ], $listeners);
         $eventManager->clearListeners('event2');
@@ -151,6 +155,11 @@ class EventManagerTest extends \PHPUnit\Framework\TestCase
 
 
         $result = $eventManager->trigger($event);
+        $this->assertEquals(4, $event->getParam('count'));
+        $this->assertEquals('last', $result);
+
+        // Event as string
+        $result = $eventManager->trigger('event1');
         $this->assertEquals(4, $event->getParam('count'));
         $this->assertEquals('last', $result);
     }
