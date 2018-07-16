@@ -4,11 +4,12 @@
 	"description": "Tlumx event manager component with PSR-14 implementation",
 	"keywords": [
 		"event manager",
-		"eventmanager",
-		"tlumx",
-		"PSR-14"
+		"eventmanager",		
+		"PSR-14",
+		"tf",
+		"tlumx"
 	],
-	"homepage": "https://github.com/tlumx/tlumx-eventmanager",
+	"homepage": "https://tlumx.com",
 	"license": "MIT",
 	"authors": [
 		{
@@ -17,6 +18,11 @@
 			"homepage": "https://yarikproger.pp.ua"
 		}
 	],
+	"support": {
+		"docs": "https://docs.tlumx.com/tlumx-eventmanager/",
+		"issues": "https://github.com/tlumx/tlumx-eventmanager/issues",
+		"source": "https://github.com/tlumx/tlumx-eventmanager"
+	},
 	"require": {
 		"php": "^7.0"
 	},
