@@ -20,11 +20,11 @@ $ composer require tlumx/tlumx-eventmanager:"1.0.*"
 
 ## Usage
 
-See: https://tlumx.com/tlumx-eventmanager/
+See: https://docs.tlumx.com/tlumx-eventmanager/
 
 
 ## Resources
 
 - File issues at https://github.com/tlumx/tlumx-eventmanager/issues
-- Documentation is at https://tlumx.com/tlumx-eventmanager/
+- Documentation is at https://docs.tlumx.com/tlumx-eventmanager/
 - [License File](LICENSE.md) for more information.
